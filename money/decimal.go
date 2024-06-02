@@ -49,6 +49,7 @@ func ParseDecimal(value string) (Decimal, error) {
 	return dec, nil
 }
 
+// simplfy checks if the last didget after a decimal is zero and removes it.
 func (d *Decimal) simplify() {
 	for d.subunits%10 == 0 && d.precision > 0 {
 		d.precision--
