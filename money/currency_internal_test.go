@@ -1,6 +1,7 @@
 package money
 
 import (
+	"errors"
 	"testing"
 )
 
@@ -26,5 +27,12 @@ func TestParseCurrency_Success(t *testing.T) {
 				t.Errorf("expected %v, got %v", tc.expected, got)
 			}
 		})
+	}
+}
+
+func TestParseCurrency_InvalidCurrencyCode(t *testing.T) {
+	_, err := ParseCurrency("INVALID")
+	if !errors.Is(err, ErrInvalidCurrecnyCode) {
+		t.Errorf("expected error %s, got %v", ErrInvalidCurrecnyCode, err)
 	}
 }
